@@ -19,7 +19,7 @@ class _CharacterCardState extends State<CharacterCard> {
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 5),
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
