@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_app/src/components/character_card.dart';
 import 'package:rick_and_morty_app/src/controllers/home_view_controller.dart';
+import 'package:rick_and_morty_app/src/repositories/character_repository.dart';
+import 'package:rick_and_morty_app/src/repositories/character_repository_impl.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.title});
@@ -11,7 +13,9 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  HomeViewController homeViewController = HomeViewController();
+  CharacterRepository characterRepository = CharacterRepositoryImpl();
+  late HomeViewController homeViewController =
+      HomeViewController(characterRepository: characterRepository);
 
   void getInitialCharacters() async {
     await homeViewController.getAll();
