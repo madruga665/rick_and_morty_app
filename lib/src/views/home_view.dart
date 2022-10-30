@@ -21,6 +21,10 @@ class _HomeViewState extends State<HomeView> {
     await homeViewController.getAll();
   }
 
+  void getNextPageCharacters() async {
+    await homeViewController.getNextPage();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -32,6 +36,10 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          actions: [
+            IconButton(
+                onPressed: getNextPageCharacters, icon: const Icon(Icons.add))
+          ],
         ),
         body: AnimatedBuilder(
           animation: homeViewController,
