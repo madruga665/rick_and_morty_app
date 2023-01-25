@@ -24,7 +24,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void getNextPageCharacters() async {
-    await homeViewController.getNextPage();
+    await homeViewController.getAll();
   }
 
   infiniteScrolling() {
@@ -50,29 +50,32 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          centerTitle: true,
-        ),
-        body: AnimatedBuilder(
-          animation: homeViewController,
-          builder: (BuildContext context, Widget? child) {
-            return Center(
-                child: homeViewController.characters.isNotEmpty
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 5),
-                        child: ListView.builder(
-                          controller: _scrollController,
-                          itemCount: homeViewController.characters.length,
-                          itemBuilder: (context, index) {
-                            return CharacterCard(
-                              character: homeViewController.characters[index],
-                            );
-                          },
-                        ))
-                    : const CircularProgressIndicator());
-          },
-        ));
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
+      body: AnimatedBuilder(
+        animation: homeViewController,
+        builder: (BuildContext context, Widget? child) {
+          return Center(
+            child: homeViewController.characters.isNotEmpty
+                ? Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount: homeViewController.characters.length,
+                      itemBuilder: (context, index) {
+                        return CharacterCard(
+                          character: homeViewController.characters[index],
+                        );
+                      },
+                    ),
+                  )
+                : const CircularProgressIndicator(),
+          );
+        },
+      ),
+    );
   }
 }

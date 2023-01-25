@@ -29,7 +29,7 @@ class HomeViewControllerImpl extends ChangeNotifier
   @override
   Future<void> getNextPage() async {
     GetAllRequestModel result =
-        await characterRepository.getNextPage(_pageInfo.next);
+        await characterRepository.getAll(_pageInfo.next);
     _characters = _characters + result.characterList;
     _pageInfo = result.pageInfo;
     notifyListeners();
