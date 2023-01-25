@@ -17,6 +17,7 @@ class _HomeViewState extends State<HomeView> {
   CharacterRepository characterRepository = CharacterRepositoryImpl();
   late HomeViewController homeViewController =
       HomeViewControllerImpl(characterRepository: characterRepository);
+  final ScrollController _scrollController = ScrollController();
 
   void getInitialCharacters() async {
     await homeViewController.getAll();
@@ -26,10 +27,24 @@ class _HomeViewState extends State<HomeView> {
     await homeViewController.getNextPage();
   }
 
+  infiniteScrolling() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      getNextPageCharacters();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     getInitialCharacters();
+    _scrollController.addListener(infiniteScrolling);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
   }
 
   @override
@@ -37,10 +52,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          actions: [
-            IconButton(
-                onPressed: getNextPageCharacters, icon: const Icon(Icons.add))
-          ],
+          centerTitle: true,
         ),
         body: AnimatedBuilder(
           animation: homeViewController,
@@ -51,6 +63,7 @@ class _HomeViewState extends State<HomeView> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 30),
                         child: ListView.builder(
+                          controller: _scrollController,
                           itemCount: homeViewController.characters.length,
                           itemBuilder: (context, index) {
                             return Padding(
