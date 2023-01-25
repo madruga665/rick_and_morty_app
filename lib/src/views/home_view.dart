@@ -61,16 +61,13 @@ class _HomeViewState extends State<HomeView> {
                 child: homeViewController.characters.isNotEmpty
                     ? Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 30),
+                            horizontal: 5, vertical: 5),
                         child: ListView.builder(
                           controller: _scrollController,
                           itemCount: homeViewController.characters.length,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: CharacterCard(
-                                  character:
-                                      homeViewController.characters[index]),
+                            return CharacterCard(
+                              character: homeViewController.characters[index],
                             );
                           },
                         ))

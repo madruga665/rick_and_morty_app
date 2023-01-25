@@ -22,8 +22,9 @@ class _CharacterCardState extends State<CharacterCard> {
             padding: const EdgeInsets.only(right: 5),
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10)),
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+              ),
               child: Image.network(
                 widget.character.image,
                 width: 100,
@@ -31,16 +32,20 @@ class _CharacterCardState extends State<CharacterCard> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(children: [
-              Text(
-                widget.character.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              )
-            ]),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(children: [
+                Text(
+                  overflow: TextOverflow.ellipsis,
+                  widget.character.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                )
+              ]),
+            ),
           )
         ],
       ),
