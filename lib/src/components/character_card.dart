@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_app/src/models/character_model.dart';
+import 'package:rick_and_morty_app/src/views/character_details.dart';
 
 class CharacterCard extends StatefulWidget {
   const CharacterCard({super.key, required this.character});
@@ -12,42 +13,54 @@ class CharacterCard extends StatefulWidget {
 class _CharacterCardState extends State<CharacterCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      color: Colors.blue,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 5),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-              ),
-              child: Image.network(
-                widget.character.image,
-                width: 100,
-                height: 100,
-              ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CharacterDetails(
+              character: widget.character,
             ),
           ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(children: [
-                Text(
-                  overflow: TextOverflow.ellipsis,
-                  widget.character.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                )
-              ]),
+        );
+      },
+      child: Card(
+        elevation: 4,
+        color: Colors.blue,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                ),
+                child: Image.network(
+                  widget.character.image,
+                  width: 100,
+                  height: 100,
+                ),
+              ),
             ),
-          )
-        ],
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(children: [
+                  Text(
+                    widget.character.name,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  )
+                ]),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
