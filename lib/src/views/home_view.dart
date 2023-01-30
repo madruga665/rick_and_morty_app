@@ -19,25 +19,17 @@ class _HomeViewState extends State<HomeView> {
       HomeViewControllerImpl(characterRepository: characterRepository);
   final ScrollController _scrollController = ScrollController();
 
-  void getInitialCharacters() async {
-    await homeViewController.getAll();
-  }
-
-  void getNextPageCharacters() async {
-    await homeViewController.getAll();
-  }
-
-  infiniteScrolling() {
+  void infiniteScrolling() {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
-      getNextPageCharacters();
+      homeViewController.getNextPage();
     }
   }
 
   @override
   void initState() {
     super.initState();
-    getInitialCharacters();
+    homeViewController.getAll();
     _scrollController.addListener(infiniteScrolling);
   }
 
@@ -45,6 +37,7 @@ class _HomeViewState extends State<HomeView> {
   void dispose() {
     super.dispose();
     _scrollController.dispose();
+    homeViewController.dispose();
   }
 
   @override
