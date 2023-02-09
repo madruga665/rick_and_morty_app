@@ -9,20 +9,41 @@ class CharacterDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan[800],
         title: Text(character.name),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyan,
+                (Colors.teal[900])!,
+              ],
+            ),
+          ),
           child: Column(
             children: [
+              const SizedBox(
+                height: 100,
+              ),
               ClipRRect(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(15),
                 ),
-                child: Image.network(
-                  character.image,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 6,
+                    ),
+                  ),
+                  child: Image.network(
+                    character.image,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -31,6 +52,7 @@ class CharacterDetails extends StatelessWidget {
               Text(
                 'Name: ${character.name}',
                 style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -42,6 +64,7 @@ class CharacterDetails extends StatelessWidget {
               Text(
                 'Id: ${character.id.toString()}',
                 style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 20,
                 ),
               )
