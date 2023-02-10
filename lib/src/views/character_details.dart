@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_app/src/Styles/app_colors.dart';
 import 'package:rick_and_morty_app/src/models/character_model.dart';
 
 class CharacterDetails extends StatelessWidget {
@@ -9,23 +10,14 @@ class CharacterDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan[800],
+        backgroundColor: AppColors.midnight,
         title: Text(character.name),
         centerTitle: true,
       ),
       body: Center(
         child: Container(
+          color: AppColors.wetAsphalt,
           width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.cyan,
-                (Colors.teal[900])!,
-              ],
-            ),
-          ),
           child: Column(
             children: [
               const SizedBox(
@@ -50,6 +42,16 @@ class CharacterDetails extends StatelessWidget {
                 height: 20,
               ),
               Text(
+                'Id: ${character.id.toString()}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
                 'Name: ${character.name}',
                 style: const TextStyle(
                   color: Colors.white,
@@ -59,15 +61,29 @@ class CharacterDetails extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               Text(
-                'Id: ${character.id.toString()}',
+                'Status: ${character.status}',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-              )
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                'Specie: ${character.species}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),

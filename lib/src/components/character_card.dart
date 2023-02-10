@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_app/src/Styles/app_colors.dart';
 import 'package:rick_and_morty_app/src/models/character_model.dart';
 import 'package:rick_and_morty_app/src/views/character_details.dart';
 
@@ -26,7 +27,7 @@ class _CharacterCardState extends State<CharacterCard> {
       },
       child: Card(
         elevation: 4,
-        color: Colors.blue,
+        color: AppColors.emerald,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [

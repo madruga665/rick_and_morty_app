@@ -4,14 +4,18 @@ class CharacterModel {
   final int id;
   final String name;
   final String image;
+  final String status;
+  final String species;
 
-  CharacterModel(this.id, this.name, this.image);
+  CharacterModel(this.id, this.name, this.image, this.status, this.species);
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
       'image': image,
+      'status': status,
+      'species': species
     };
   }
 
@@ -20,6 +24,8 @@ class CharacterModel {
       map['id']?.toInt() ?? 0,
       map['name'] ?? '',
       map['image'] ?? '',
+      map['status'] ?? '',
+      map['species'] ?? '',
     );
   }
 

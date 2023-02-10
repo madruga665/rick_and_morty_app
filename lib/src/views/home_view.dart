@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_app/src/Styles/app_colors.dart';
 import 'package:rick_and_morty_app/src/components/character_card.dart';
 import 'package:rick_and_morty_app/src/controllers/homeView/home_view_controller.dart';
 import 'package:rick_and_morty_app/src/controllers/homeView/home_view_controller_impl.dart';
@@ -44,30 +45,37 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.midnight,
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: AnimatedBuilder(
-        animation: homeViewController,
-        builder: (BuildContext context, Widget? child) {
-          return Center(
-            child: homeViewController.characters.isNotEmpty
-                ? Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                    child: ListView.builder(
-                      controller: _scrollController,
-                      itemCount: homeViewController.characters.length,
-                      itemBuilder: (context, index) {
-                        return CharacterCard(
-                          character: homeViewController.characters[index],
-                        );
-                      },
-                    ),
-                  )
-                : const CircularProgressIndicator(),
-          );
-        },
+      body: Container(
+        color: AppColors.wetAsphalt,
+        child: AnimatedBuilder(
+          animation: homeViewController,
+          builder: (BuildContext context, Widget? child) {
+            return Center(
+              child: homeViewController.characters.isNotEmpty
+                  ? Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10),
+                      child: ListView.builder(
+                        controller: _scrollController,
+                        itemCount: homeViewController.characters.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                            child: CharacterCard(
+                              character: homeViewController.characters[index],
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : const CircularProgressIndicator(),
+            );
+          },
+        ),
       ),
     );
   }
