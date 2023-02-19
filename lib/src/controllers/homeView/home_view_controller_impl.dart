@@ -7,21 +7,19 @@ import 'package:rick_and_morty_app/src/repositories/character/character_reposito
 
 class HomeViewControllerImpl extends ChangeNotifier
     implements HomeViewController {
-  CharacterRepository characterRepository;
-  List<CharacterModel> _characters = [];
+  final CharacterRepository characterRepository;
+  final List<CharacterModel> _characters = [];
   late PageInfoModel _pageInfo;
 
   HomeViewControllerImpl({required this.characterRepository});
 
   @override
   List<CharacterModel> get characters => _characters;
-  @override
-  PageInfoModel get pageInfo => _pageInfo;
 
   @override
   Future<void> getAll() async {
     GetAllRequestModel result = await characterRepository.getAll();
-    _characters = _characters + result.characterList;
+    _characters.addAll(result.characterList);
     _pageInfo = result.pageInfo;
     notifyListeners();
   }
@@ -30,7 +28,7 @@ class HomeViewControllerImpl extends ChangeNotifier
   Future<void> getNextPage() async {
     GetAllRequestModel result =
         await characterRepository.getAll(_pageInfo.next);
-    _characters = _characters + result.characterList;
+    _characters.addAll(result.characterList);
     _pageInfo = result.pageInfo;
     notifyListeners();
   }
