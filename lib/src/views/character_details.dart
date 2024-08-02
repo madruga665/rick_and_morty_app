@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_app/src/Styles/app_colors.dart';
+import 'package:rick_and_morty_app/src/styles/app_colors.dart';
 import 'package:rick_and_morty_app/src/models/character_model.dart';
 
 class CharacterDetails extends StatelessWidget {

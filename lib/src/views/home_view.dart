@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_app/src/Styles/app_colors.dart';
+import 'package:rick_and_morty_app/src/styles/app_colors.dart';
 import 'package:rick_and_morty_app/src/components/character_card.dart';
 import 'package:rick_and_morty_app/src/controllers/homeView/home_view_controller.dart';
 import 'package:rick_and_morty_app/src/controllers/homeView/home_view_controller_impl.dart';
@@ -57,14 +57,14 @@ class _HomeViewState extends State<HomeView> {
             return Center(
               child: homeViewController.characters.isNotEmpty
                   ? Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: ListView.builder(
                         controller: _scrollController,
                         itemCount: homeViewController.characters.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 10),
                             child: CharacterCard(
                               character: homeViewController.characters[index],
                             ),
